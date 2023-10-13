@@ -2,21 +2,48 @@
 
 ## Abstract
 
+
 Blockchain technology has revolutionized various industries, including the world of finance and payments. The Celo blockchain, known for its cost-effectiveness and scalability, has gained popularity as an alternative to Ethereum. 
 
-In this article, we will provide a structured guide on how to deploy, debug, and monitor a Solidity smart contract on the Celo blockchain. We will use the example of a "Buy Me Coffee" smart contract to illustrate these processes. To accomplish this, we will employ the Hardhat development framework for contract deployment and utilize Tenderly, a powerful tool for Ethereum and Celo contract analysis, for debugging and monitoring.
+In this article, we will provide a structured guide on how to deploy, debug, and monitor a Solidity smart contract on the Celo blockchain. We will use the example of a "Buy Me Coffee" smart contract to illustrate these processes. To accomplish this, we will employ the Hardhat development framework for contract deployment and utilize Tenderly, a powerful tool for Ethereum and Celo contract analysis, debugging and monitoring.
 
-## Introduction
+## Table of Content
+<!-- TOC -->
+
+- [How to Deploy, Debug, and Monitor a Solidity Smart Contract on Celo using Hardhat and Tenderly](#how-to-deploy-debug-and-monitor-a-solidity-smart-contract-on-celo-using-hardhat-and-tenderly)
+  - [Abstract](#abstract)
+  - [Table of Content](#table-of-content)
+  - [Introduction](#introduction)
+    - [Background on Celo](#background-on-celo)
+  - [Requirements](#requirements)
+  - [Setting Up the Project](#setting-up-the-project)
+    - [Project Initialization](#project-initialization)
+  - [Writing the Buy Me Coffee Smart Contract](#writing-the-buy-me-coffee-smart-contract)
+  - [Configuring the Hardhat Project](#configuring-the-hardhat-project)
+    - [Modifying the Configuration](#modifying-the-configuration)
+  - [Compiling the Smart Contract](#compiling-the-smart-contract)
+  - [Deploying the Buy Me Coffee Smart Contract to Celo Testnet](#deploying-the-buy-me-coffee-smart-contract-to-celo-testnet)
+  - [Interacting with the Deployed Buy Me Coffee Contract](#interacting-with-the-deployed-buy-me-coffee-contract)
+  - [Debugging with Hardhat and Tenderly](#debugging-with-hardhat-and-tenderly)
+    - [Debugging with Hardhat](#debugging-with-hardhat)
+    - [Debugging with Tenderly](#debugging-with-tenderly)
+    - [Monitoring with Tenderly](#monitoring-with-tenderly)
+  - [Conclusion](#conclusion)
+
+<!-- /TOC -->
+
+
+## Introduction 
 
 ### Background on Celo
 
 Celo is a blockchain platform designed to make financial services and payments more accessible to people worldwide, particularly those in underserved regions. It utilizes a Proof of Stake (PoS) consensus mechanism to enhance scalability and reduce transaction costs. Similar to Ethereum, Celo supports smart contract development in the Solidity programming language.
 
-## Prerequisites
+## Requirements
 Before we dive into the deployment, debugging, and monitoring of our "Buy Me Coffee" smart contract on the Celo blockchain, let's ensure we have the necessary tools and knowledge:
 
   1. Node.js: [Install Node.js](nodejs.org) 
-  2. Package Manager: Choose either NPM or Yarn as your     package manager. Both are widely used in the JavaScript   ecosystem.
+  2. Package Manager: Choose either NPM or Yarn as your package manager. Both are widely used in the JavaScript ecosystem.
 
   3. Hardhat: Install Hardhat globally with NPM or Yarn:
 
@@ -28,9 +55,9 @@ Before we dive into the deployment, debugging, and monitoring of our "Buy Me Cof
 
  4. Tenderly Account: Sign up for a Tenderly account at [tenderly.co](tenderly.co).
 
- 5. Solidity: Familiarize yourself with the Solidity programming language, essential for writing smart contracts.
+ 5. Solidity: Familiarize yourself with the Solidity programming language as it is essential for writing smart contracts.
 
- 6. Celo Wallet: Install a Celo-compatible wallet like Valora or Celo Extension Wallet for interacting with the Celo testnet and mainnet.
+ 6. Celo Wallet: Install a Celo-compatible wallet like Valora or the Celo Extension Wallet for interacting with the Celo testnet and mainnet.
 
 ## Setting Up the Project
 ### Project Initialization
@@ -89,7 +116,7 @@ The contract includes three state variables:
 
 - `coffeeCounter`: This variable keeps track of the total number of coffees bought by users.
 
-Ther's also an event named `CoffeeBought`. Events are a way for smart contracts to communicate with external applications. This event will be emitted whenever a user buys a cup of coffee. It includes two parameters:
+There's also an event named `CoffeeBought`. Events are a way for smart contracts to communicate with external applications. This event will be emitted whenever a user buys a cup of coffee. It includes two parameters:
 
 - `buyer`: The address of the buyer (indexed for efficient filtering).
 - `amount`: The amount sent by the buyer in wei.
@@ -114,7 +141,7 @@ The `withdrawFunds` function allows the contract owner (the address that deploye
 
 - It checks if the sender of the transaction (`msg.sender`) is the owner. If not, it reverts the transaction with an error message.
 
-- If the sender is the owner, it uses p`ayable(owner).transfer(address(this).balance)` to transfer the contract's balance (accumulated funds) to the owner's address.
+- If the sender is the owner, it uses `payable (owner).transfer(address(this).balance)` to transfer the contract's balance (accumulated funds) to the owner's address.
 
 In summary, this "Buy Me Coffee" smart contract allows users to buy coffee by sending the correct amount of cryptocurrency. The contract owner can withdraw the accumulated funds. It also emits an event to notify external applications when a coffee is purchased. This example demonstrates how Solidity smart contracts can handle payments and events on the Celo blockchain.
 
@@ -284,7 +311,7 @@ Hardhat includes a built-in Solidity debugger that allows you to step through yo
 npx hardhat node
 ```
 
-This command starts a local Celo node with a built-in debugger. In your `interact.js` script, you can add breakpoints using c`onsole.log` statements or by using `debugger`; statements in your contract code. Then, run your script in a separate terminal.
+This command starts a local Celo node with a built-in debugger. In your `interact.js` script, you can add breakpoints using `console.log` statements or by using `debugger`; statements in your contract code. Then, run your script in a separate terminal.
 
 ```bash
 node interact.js
